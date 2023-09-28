@@ -1,0 +1,13 @@
+- route:
+    id: mqtt_kafka_bridge
+    from:
+      uri: "paho-mqtt5:{{mqtt_topic}}"
+      parameters:
+        brokerUrl: "tcp://{{mqtt_broker_url}}"
+        retained: true
+        clientId: camelReader
+      steps:
+      - to:
+          uri: log:mqtt
+          parameters:
+            multiline: true
